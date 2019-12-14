@@ -1,6 +1,6 @@
 {
-  "name": "react-giphy-select",
-  "version": "1.0.3",
+  "name": "@happylinks/react-giphy-select",
+  "version": "2.0.1",
   "description": "A React component for select GIFs on GIPHY.",
   "main": "lib/index.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "start": "webpack-dev-server",
     "test": "jest --verbose",
     "test:watch": "jest --verbose --watch",
-    "build-docs": "rimraf docs-dist && NODE_ENV=production webpack"
+    "build-docs": "rimraf docs-dist && NODE_ENV=production webpack",
+    "publish": "npm publish --access=public"
   },
   "repository": {
     "type": "git",

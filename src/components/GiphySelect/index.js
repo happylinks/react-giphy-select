@@ -18,6 +18,7 @@ export default class GiphySelect extends Component {
     requestRating: PropTypes.string,
     renderEntry: PropTypes.func,
     autoFocus: PropTypes.bool,
+    requestType: PropTypes.string,
     onEntrySelect: PropTypes.func,
   };
 
@@ -30,6 +31,7 @@ export default class GiphySelect extends Component {
     requestRating: 'pg',
     renderEntry: GiphyList.defaultProps.renderEntry,
     autoFocus: false,
+    requestType: null,
     onEntrySelect: GiphyList.defaultProps.onEntrySelect,
   };
 
@@ -81,7 +83,7 @@ export default class GiphySelect extends Component {
   _onWheel = e => e.preventDefault();
 
   _fetchItems = () => {
-    const { requestKey, requestLang, requestRating } = this.props;
+    const { requestKey, requestLang, requestRating, requestType } = this.props;
     let endpoint = '';
     if (this._query) {
       endpoint = `search?q=${encodeURIComponent(this._query)}&`;
@@ -90,7 +92,7 @@ export default class GiphySelect extends Component {
     }
     const offset = this._offset;
 
-    fetch(`${location.protocol}//api.giphy.com/v1/gifs/${endpoint}offset=${offset}&lang=${requestLang}&rating=${requestRating}&api_key=${requestKey}`)
+    fetch(`${location.protocol}//api.giphy.com/v1/${requestType || "gifs"}/${endpoint}offset=${offset}&lang=${requestLang}&rating=${requestRating}&api_key=${requestKey}`)
       .then(response => response.json())
       .then(this._updateItems)
       .catch(console.error); // eslint-disable-line no-console
